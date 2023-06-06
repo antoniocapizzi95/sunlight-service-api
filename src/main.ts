@@ -1,4 +1,5 @@
 import * as express from "express";
+import * as cors from "cors";
 import { SunlightController } from "./controllers/sunlight.controller";
 import { SunriseSunsetRepository } from "./repository/sunrise.sunset.repository";
 
@@ -6,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+app.use(cors())
 
 const sunlightController = new SunlightController(new SunriseSunsetRepository())
 

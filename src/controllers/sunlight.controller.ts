@@ -15,7 +15,7 @@ export class SunlightController {
     
         try {
             const datetime = DateTime.fromISO(date.toString());
-            const result = await this.sunlightRepository.getSunlightTime(datetime, lat, lng);
+            const result = await this.sunlightRepository.getSunlightTime(datetime, parseFloat(lat.toString()), parseFloat(lng.toString()));
             res.status(200).send(result);
         } catch (error) {
             console.error(error);
@@ -33,7 +33,7 @@ export class SunlightController {
             for (let i = 0; i < 12; i++) {
                 const nextMonth = datetime.plus({ months: i });
 
-                const result = await this.sunlightRepository.getSunlightTime(nextMonth, lat, lng);
+                const result = await this.sunlightRepository.getSunlightTime(nextMonth, parseFloat(lat.toString()), parseFloat(lng.toString()));
                 sunlightData.push(result);
             }
             res.status(200).send(sunlightData);
