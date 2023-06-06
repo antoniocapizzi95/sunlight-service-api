@@ -4,3 +4,5 @@ services:
     container_name: sunlight-service-api
     command: bash -c "npm start"
     build: .
+    ports:
+      - "5000:5000"
