@@ -29,9 +29,10 @@ export class SunlightController {
         let sunlightData: SunlightData[] = [];
         try {
             const datetime = DateTime.fromISO(date.toString());
+            const currentMonth = datetime.month;
 
-            for (let i = 0; i < 12; i++) {
-                const nextMonth = datetime.plus({ months: i });
+            for (let i = currentMonth; i <= 12; i++) {
+                const nextMonth = datetime.plus({ months: i - currentMonth });
 
                 const result = await this.sunlightRepository.getSunlightTime(nextMonth, parseFloat(lat.toString()), parseFloat(lng.toString()));
                 sunlightData.push(result);
