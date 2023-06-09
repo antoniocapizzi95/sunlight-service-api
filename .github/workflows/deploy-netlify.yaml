@@ -1,28 +1,29 @@
-name: Deploy to Netlify
+name: Netlify Deploy
+
 on:
   push:
-    branches:
-      - master
+    branches: [master]
+
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
 
-      - name: Login to Netlify CLI
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build application
+        run: npm run build
+
+      - name: Deploy application to Netlify
         uses: netlify/actions/cli@master
+        with:
+          args: deploy --prod --dir=dist --functions=netlify/functions --message="Auto deploy from GitHub Actions"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        with:
-          args: login
-
-      - name: Build and deploy function
-        run: |
-          npm install
-          npm run build
-
-      - name: Start function
-        run: |
-          npm install netlify-cli -g
-          netlify dev:exec npm start
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
