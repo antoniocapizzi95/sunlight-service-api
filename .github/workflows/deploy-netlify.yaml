@@ -18,11 +18,8 @@ jobs:
           args: login
 
       - name: Build and deploy function
-        uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        with:
-          args: deploy --prod --dir=dist
+        run: |
+          npm run build
 
       - name: Start function
         run: |
