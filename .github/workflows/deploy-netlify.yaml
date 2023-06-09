@@ -19,6 +19,7 @@ jobs:
 
       - name: Build and deploy function
         run: |
+          npm install
           npm run build
 
       - name: Start function
