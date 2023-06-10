@@ -49,7 +49,7 @@ on:
     branches: [ "master" ]
 
 env:
-  PROJECT_ID: sunlight-service # TODO: update Google Cloud project id
+  PROJECT_ID: sunlight-service/sunlight-service # TODO: update Google Cloud project id
   GAR_LOCATION: us-central1 # TODO: update Artifact Registry location
   SERVICE: sunlight-service-api # TODO: update Cloud Run service name
   REGION: us-central1 # TODO: update Cloud Run service region
