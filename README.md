@@ -38,7 +38,7 @@ The response has the following format:
 
 ### GET /sunlight-one-year
 
-This endpoint returns the total number of daylight hours for a specific date and geographic location, for each month until the end of the year.
+This endpoint returns (in the response body) the total number of daylight hours for a specific date and geographic location, for each month until the end of the year.
 
 Query Parameters
 
@@ -48,7 +48,7 @@ Query Parameters
 
 Response
 
-The response is an array of objects, each with the same format as the response of the /sunlight endpoint. The array contains one object for each month between the chosen date and the end of the year.
+The response body is an array of objects, each with the same format as the response of the /sunlight endpoint. The array contains one object for each month between the chosen date and the end of the year.
 
 ## Deployment
 
