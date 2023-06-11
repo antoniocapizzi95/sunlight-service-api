@@ -4,6 +4,12 @@ import { SunlightRepository } from "./sunlight.repository.interface";
 import { SunlightData } from "./models/sunlight.data";
 
 export class SunriseSunsetRepository implements SunlightRepository {
+  private serviceUrl: string;
+
+  constructor(serviceUrl: string) {
+    this.serviceUrl = serviceUrl;
+  }
+
   async getSunlightTime(datetime: DateTime, lat: number, lng: number): Promise<SunlightData> {
     const datetimeFmt = datetime.toFormat("yyyy-MM-dd")
     const queryParams = {
@@ -11,7 +17,7 @@ export class SunriseSunsetRepository implements SunlightRepository {
       lat: lat,
       lng: lng,
     };
-    const response = await axios.get('https://api.sunrise-sunset.org/json', { params: queryParams });
+    const response = await axios.get(this.serviceUrl, { params: queryParams });
   
     return {
       date: datetimeFmt,
