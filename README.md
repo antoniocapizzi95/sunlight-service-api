@@ -1,5 +1,6 @@
 # sunlight-service-api
 
+## Description
 Sunlight Service API is a Node/Express backend project developed using TypeScript. This API has two endpoints that return the total number of daylight hours for a given date and geographic location.
 
 ## Installation
